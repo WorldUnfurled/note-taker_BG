@@ -1,6 +1,7 @@
 const path = require('path');
 const express = require('express');
 const router = express.Router();
+const uuid = require('uuid');
 
 const notes = [
     {
@@ -21,7 +22,11 @@ router.post('/', (req, res) => {
     
     const note = req.body;
 
-    notes.push(note);
+    const noteID = uuidv4();
+
+    const orderedNote = { ...note, id: noteId } // Using spread to add id
+
+    notes.push(orderedNote);
 
     console.log(notes);
 
