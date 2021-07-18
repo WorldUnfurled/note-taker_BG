@@ -24,7 +24,7 @@ router.post('/', (req, res) => {
 
     const noteID = uuidv4();
 
-    const orderedNote = { ...note, id: noteId } // Using spread to add id
+    const orderedNote = { ...note, id: noteID } // Using spread to add id
 
     notes.push(orderedNote);
 
