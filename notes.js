@@ -27,6 +27,10 @@ router.post('/', (req, res) => {
 
     res.send(`Note '${note.title}' added.`);
 });
+
+router.get('/:id', (req, res) => {
+    res.send('Testing, testing...');
+});
 // router.get('/api/notes', (req, res) => res.json(path.join(__dirname, './db.json'))); // API
 
 module.exports = router;
