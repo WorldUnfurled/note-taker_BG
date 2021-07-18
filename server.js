@@ -22,7 +22,14 @@ app.get('/notes', (req, res) => res.sendFile(path.join(__dirname, '/public/notes
 
 app.get('/api/notes', (req, res) => res.json(__dirname, '/db.json')); // API
 
+app.post('/api/notes', (req, res) => {
+    const newNote = req.body;
 
+    newNote.routeName = newNote.name.replace(/\s+/g, '').toLowerCase();
+
+    notes.push(newNote);
+    res.json(newNote);
+});
 
 // Listener
 app.listen(PORT, () => console.log(`http://localhost:${PORT}`));
