@@ -1,5 +1,6 @@
 // Imports
 const express = require('express');
+const fs = require('fs');
 const path = require('path');
 
 // Express call
@@ -20,14 +21,22 @@ app.get('/', (req, res) => res.sendFile(path.join(__dirname, '/public/index.html
 
 app.get('/notes', (req, res) => res.sendFile(path.join(__dirname, '/public/notes.html'))); // Notes
 
-app.get('/api/notes', (req, res) => res.json(__dirname, '/db.json')); // API
+app.get('/api/notes', (req, res) => res.json(path.join(__dirname, '/db.json'))); // API
+
+// const notes = [];
 
 app.post('/api/notes', (req, res) => {
     const newNote = req.body;
+    console.log(req.body);
 
-    newNote.routeName = newNote.name.replace(/\s+/g, '').toLowerCase();
+    newNote.routeName = newNote.name;
 
-    notes.push(newNote);
+    // notes.push(newNote);
+
+    fs.appendFile(path.join(__dirname, '/db.json'), JSON.stringify(newNote), (err) => {
+        if (err) throw err;
+    });
+
     res.json(newNote);
 });
 
