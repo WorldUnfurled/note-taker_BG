@@ -2,7 +2,7 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
-const noteRoutes = require('./routes/notes');
+const noteRoutes = require('./notes');
 
 // Express call
 const app = express();
@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(express.static("public"));
 app.use('/notes', noteRoutes);
 
-router.get('/', (req, res) => res.sendFile(path.join(__dirname, '/public/index.html'))); // Home
+app.get('/', (req, res) => res.sendFile(path.join(__dirname, '/public/index.html'))); // Home
 
 app.post('/api/notes', (req, res) => {
     const newNote = req.body;
