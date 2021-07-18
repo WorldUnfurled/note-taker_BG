@@ -18,24 +18,23 @@ app.use(express.json());
 app.use(express.static("public"));
 app.use('/notes', noteRoutes);
 
-app.get('/', (req, res) => res.sendFile(path.join(__dirname, '/public/index.html'))); // Home
+// Home Route
+app.get('/', (req, res) => res.sendFile(path.join(__dirname, '/public/index.html')));
 
-app.post('/api/notes', (req, res) => {
-    const newNote = req.body;
-    console.log(req.body);
+// app.post('/api/notes', (req, res) => {
+//     const newNote = req.body;
+//     console.log(req.body);
 
-    newNote.routeName = newNote.name;
+//     newNote.routeName = newNote.name;
 
-    // notes.push(newNote);
+//     // notes.push(newNote);
 
-    fs.appendFile(path.join(__dirname, '/db.json'), JSON.stringify(newNote), (err) => {
-        if (err) throw err;
-    });
+//     fs.appendFile(path.join(__dirname, '/db.json'), JSON.stringify(newNote), (err) => {
+//         if (err) throw err;
+//     });
 
-    res.json(newNote);
-});
+//     res.json(newNote);
+// });
 
 // Listener
 app.listen(PORT, () => console.log(`http://localhost:${PORT}`));
-
-// console.log(__dirname) = ...\note-taker_BG
