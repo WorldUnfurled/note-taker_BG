@@ -18,9 +18,14 @@ router.get('/', (req, res) => {
 
 
 router.post('/', (req, res) => {
+    
+    const note = req.body;
+
+    notes.push(note);
+
     console.log(notes);
-    console.log(req.body);
-    res.send('POSTED');
+
+    res.send(`Note '${note.title}' added.`);
 });
 // router.get('/api/notes', (req, res) => res.json(path.join(__dirname, './db.json'))); // API
 
