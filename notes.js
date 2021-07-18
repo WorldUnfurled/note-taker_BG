@@ -29,7 +29,11 @@ router.post('/', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-    res.send('Testing, testing...');
+    const targetID = req.params.id;
+
+    const targetNote = notes.find((note) => note.id === targetID);
+
+    res.send(targetNote);
 });
 // router.get('/api/notes', (req, res) => res.json(path.join(__dirname, './db.json'))); // API
 
