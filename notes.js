@@ -3,12 +3,7 @@ const express = require('express');
 const router = express.Router();
 const uuid = require('uuid');
 
-const notes = [
-    {
-        title: "Test Title",
-        text: "Test text"
-    }
-]
+const notes = [];
 
 // Routes
 
@@ -22,7 +17,7 @@ router.post('/', (req, res) => {
     
     const note = req.body;
 
-    const noteID = uuidv4();
+    const noteID = uuid.v4();
 
     const orderedNote = { ...note, id: noteID } // Using spread to add id
 
