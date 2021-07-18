@@ -16,9 +16,12 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // Routes
-app.get('/', (req, res) => res.sendFile(path.join(__dirname, '/public/index.html')));
+app.get('/', (req, res) => res.sendFile(path.join(__dirname, '/public/index.html'))); // Home
 
-app.get('/notes', (req, res) => res.sendFile(path.join(__dirname, '/public/notes.html')));
+app.get('/notes', (req, res) => res.sendFile(path.join(__dirname, '/public/notes.html'))); // Notes
+
+app.get('/api/notes', (req, res) => res.json(__dirname, '/db.json')); // API
+
 
 
 // Listener
