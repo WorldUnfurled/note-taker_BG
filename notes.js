@@ -1,3 +1,4 @@
+//Imports
 const path = require('path');
 const express = require('express');
 const router = express.Router();
@@ -8,6 +9,7 @@ let JSONotes = require('./db.json');
 
 // Routes
 
+// Adds ID to note and pushes that note to the db file and writes it there
 router.post('/notes', (req, res) => {
     
     const note = req.body;
@@ -26,7 +28,9 @@ router.post('/notes', (req, res) => {
     //WRITE TO DB JSON FILE
 });
 
+// Renders json notes
 router.get('/notes', (req, res) => res.json(JSONotes));
 
+//Export
 module.exports = router;
 
