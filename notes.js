@@ -2,18 +2,13 @@ const path = require('path');
 const express = require('express');
 const router = express.Router();
 const uuid = require('uuid');
+const fs = require('fs');
 
-const notes = [];
+let JSONotes = require('./db.json');
 
 // Routes
 
-router.get('/', (req, res) => {
-    console.log(notes);
-    res.sendFile(path.join(__dirname, '/public/notes.html'))
-});
-
-
-router.post('/', (req, res) => {
+router.post('/notes', (req, res) => {
     
     const note = req.body;
 
@@ -21,21 +16,17 @@ router.post('/', (req, res) => {
 
     const orderedNote = { ...note, id: noteID } // Using spread to add id
 
-    notes.push(orderedNote);
+    JSONotes.push(orderedNote);
 
-    console.log(notes);
+    fs.writeFile(path.join(__dirname, '/db.json'), JSON.stringify(orderedNote), (err) => {
+        if (err) throw err;
+    });
 
-    res.send(`Note '${note.title}' added.`);
+    res.end();
+    //WRITE TO DB JSON FILE
 });
 
-router.get('/:id', (req, res) => {
-    const targetID = req.params.id;
-
-    const targetNote = notes.find((note) => note.id === targetID);
-
-    res.send(targetNote);
-});
-// router.get('/api/notes', (req, res) => res.json(path.join(__dirname, './db.json'))); // API
+router.get('/notes', (req, res) => res.json(JSONotes));
 
 module.exports = router;
 
