@@ -17,10 +17,10 @@ router.post('/notes', (req, res) => {
     const noteID = uuid.v4();
 
     const orderedNote = { ...note, id: noteID } // Using spread to add id
-
+    console.log(JSONotes);
     JSONotes.push(orderedNote);
-
-    fs.writeFile(path.join(__dirname, '/db.json'), JSON.stringify(orderedNote), (err) => {
+    console.log(JSONotes);
+    fs.writeFile(path.join(__dirname, '/db.json'), JSON.stringify(JSONotes), (err) => {
         if (err) throw err;
     });
 
