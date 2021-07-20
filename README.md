@@ -37,7 +37,6 @@ Insomnia was used for extensive GET and POST testing for relevant routes.
 ## Links
 
 https://github.com/WorldUnfurled/note-taker_BG
-https://worldunfurled.github.io/note-taker_BG/
 https://git.heroku.com/note-taker-bg.git
 
 ## E-Signature
